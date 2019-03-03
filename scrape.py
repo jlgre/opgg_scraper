@@ -1,68 +1,61 @@
 import requests
 from bs4 import BeautifulSoup
 
-data = requests.get("https://na.op.gg/champion/statistics")
+def get_tier_list(lane):
+	"""
+	gets a tier list from a specified lane
+	lane options:
+		"TOP"
+		"JUNGLE"
+		"MID"
+		"ADC"
+		"SUPPORT"
+	"""
+	data = requests.get("https://na.op.gg/champion/statistics")
+	soup = BeautifulSoup(data.text, "html.parser")
+	ranks = soup.find("table", {"class" : "champion-index-table tabItems"})
+	tbodyc = "tabItem champion-trend-tier-" + lane
+	tbody = ranks.find("tbody", {"class" : tbodyc})
 
-soup = BeautifulSoup(data.text, "html.parser")
+	place, name, win_rate, ban_rate = [],[],[],[]
 
-ranks = soup.find("table", {"class" : "champion-index-table tabItems"})
+	for tr in tbody.find_all("tr"):
+	    raw = tr.find_all("td")
+	    place.append(raw[0].text.strip())
+	    name.append(raw[3].find("a").find("div").text.strip())
+	    win_rate.append(raw[4].text.strip())
+	    ban_rate.append(raw[5].text.strip())
+
+	return place, name, win_rate, ban_rate
+
+
 
 print("\nTOP TIER LIST\n")
+place, name, win_rate, ban_rate = get_tier_list("TOP")
 
-TOP = ranks.find("tbody", {"class" : "tabItem champion-trend-tier-TOP"})
-
-for tr in TOP.find_all("tr"):
-    raw = tr.find_all("td")
-    place = raw[0].text.strip()
-    name = raw[3].find("a").find("div").text.strip()
-    win_rate = raw[4].text.strip()
-    ban_rate = raw[5].text.strip()
-    print(place, name, win_rate, ban_rate)
+for i in range(0,len(place)):
+	print(place[i], name[i], win_rate[i], ban_rate[i])
 
 print("\nJUNGLE TIER LIST\n")
+place, name, win_rate, ban_rate = get_tier_list("JUNGLE")
 
-JUNGLE = ranks.find("tbody", {"class" : "tabItem champion-trend-tier-JUNGLE"})
-
-for tr in JUNGLE.find_all("tr"):
-    raw = tr.find_all("td")
-    place = raw[0].text.strip()
-    name = raw[3].find("a").find("div").text.strip()
-    win_rate = raw[4].text.strip()
-    ban_rate = raw[5].text.strip()
-    print(place, name, win_rate, ban_rate)
+for i in range(0,len(place)):
+	print(place[i], name[i], win_rate[i], ban_rate[i])
 
 print("\nMID TIER LIST\n")
+place, name, win_rate, ban_rate = get_tier_list("MID")
 
-MID = ranks.find("tbody", {"class" : "tabItem champion-trend-tier-MID"})
-
-for tr in MID.find_all("tr"):
-    raw = tr.find_all("td")
-    place = raw[0].text.strip()
-    name = raw[3].find("a").find("div").text.strip()
-    win_rate = raw[4].text.strip()
-    ban_rate = raw[5].text.strip()
-    print(place, name, win_rate, ban_rate)
+for i in range(0,len(place)):
+	print(place[i], name[i], win_rate[i], ban_rate[i])
 
 print("\nADC TIER LIST\n")
+place, name, win_rate, ban_rate = get_tier_list("ADC")
 
-ADC = ranks.find("tbody", {"class" : "tabItem champion-trend-tier-ADC"})
-
-for tr in ADC.find_all("tr"):
-    raw = tr.find_all("td")
-    place = raw[0].text.strip()
-    name = raw[3].find("a").find("div").text.strip()
-    win_rate = raw[4].text.strip()
-    ban_rate = raw[5].text.strip()
-    print(place, name, win_rate, ban_rate)
+for i in range(0,len(place)):
+	print(place[i], name[i], win_rate[i], ban_rate[i])
 
 print("\nSUPPORT TIER LIST\n")
+place, name, win_rate, ban_rate = get_tier_list("SUPPORT")
 
-SUPPORT = ranks.find("tbody", {"class" : "tabItem champion-trend-tier-SUPPORT"})
-
-for tr in SUPPORT.find_all("tr"):
-    raw = tr.find_all("td")
-    place = raw[0].text.strip()
-    name = raw[3].find("a").find("div").text.strip()
-    win_rate = raw[4].text.strip()
-    ban_rate = raw[5].text.strip()
-    print(place, name, win_rate, ban_rate)
+for i in range(0,len(place)):
+	print(place[i], name[i], win_rate[i], ban_rate[i])
