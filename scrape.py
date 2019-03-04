@@ -1,4 +1,5 @@
 import requests
+import sys
 from bs4 import BeautifulSoup
 
 def get_tier_list(lane):
@@ -14,8 +15,8 @@ def get_tier_list(lane):
 	data = requests.get("https://na.op.gg/champion/statistics")
 	soup = BeautifulSoup(data.text, "html.parser")
 	ranks = soup.find("table", {"class" : "champion-index-table tabItems"})
-	tbodyc = "tabItem champion-trend-tier-" + lane
-	tbody = ranks.find("tbody", {"class" : tbodyc})
+	tbodyclass = "tabItem champion-trend-tier-" + lane
+	tbody = ranks.find("tbody", {"class" : tbodyclass})
 
 	place, name, win_rate, ban_rate = [],[],[],[]
 
@@ -29,33 +30,92 @@ def get_tier_list(lane):
 	return place, name, win_rate, ban_rate
 
 
+def disp_tier_list(place, name, win_rate, ban_rate, lane):
+	"""
+	Displays data returned from tier lists
+	"""
+	for i in range(0,len(place)):
+		if len(name[i]) >= 8:
+			print(place[i] + "\t\t" +  name[i] + "\t" +  win_rate[i] + "\t\t" + ban_rate[i])
+		else:
+			print(place[i] + "\t\t" +  name[i] + "\t\t" +  win_rate[i] + "\t\t" + ban_rate[i])
 
-print("\nTOP TIER LIST\n")
-place, name, win_rate, ban_rate = get_tier_list("TOP")
 
-for i in range(0,len(place)):
-	print(place[i], name[i], win_rate[i], ban_rate[i])
+def err():
+	"""
+	Deals with invalid argument input
+	"""
+	print("USAGE:\n\tUse parameter -t to get tier lists \n\tSpecify lane by following with:\n\t\t-t (TOP)\n\t\t-j (JUNGLE) \n\t\t-m (MID)\n\t\t-ad (ADC)\n\t\t-s (SUPPORT)\n\t\t-a (ALL)")
 
-print("\nJUNGLE TIER LIST\n")
-place, name, win_rate, ban_rate = get_tier_list("JUNGLE")
+try:
 
-for i in range(0,len(place)):
-	print(place[i], name[i], win_rate[i], ban_rate[i])
+	if sys.argv[1] == "-t" and sys.argv[2] == "-a":
 
-print("\nMID TIER LIST\n")
-place, name, win_rate, ban_rate = get_tier_list("MID")
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("TOP")
 
-for i in range(0,len(place)):
-	print(place[i], name[i], win_rate[i], ban_rate[i])
+		disp_tier_list(place, name, win_rate, ban_rate, "TOP")
 
-print("\nADC TIER LIST\n")
-place, name, win_rate, ban_rate = get_tier_list("ADC")
+		print("\nJUNGLE TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("JUNGLE")
 
-for i in range(0,len(place)):
-	print(place[i], name[i], win_rate[i], ban_rate[i])
+		disp_tier_list(place, name, win_rate, ban_rate, "JUNGLE")
 
-print("\nSUPPORT TIER LIST\n")
-place, name, win_rate, ban_rate = get_tier_list("SUPPORT")
+		print("\nMID TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("MID")
 
-for i in range(0,len(place)):
-	print(place[i], name[i], win_rate[i], ban_rate[i])
+		disp_tier_list(place, name, win_rate, ban_rate, "MID")
+
+		print("\nADC TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("ADC")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "ADC")
+
+		print("\nSUPPORT TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("SUPPORT")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "SUPPORT")
+
+	if sys.argv[1] == "-t" and sys.argv[2] == "-t":
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("TOP")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "TOP")
+
+	if sys.argv[1] == "-t" and sys.argv[2] == "-j":
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("JUNGLE")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "JUNGLE")
+
+	if sys.argv[1] == "-t" and sys.argv[2] == "-m":
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("MID")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "MID")
+
+	if sys.argv[1] == "-t" and sys.argv[2] == "-ad":
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("ADC")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "ADC")
+
+	if sys.argv[1] == "-t" and sys.argv[2] == "-s":
+		print("\nTOP TIER LIST\n")
+		print("Tier\t\tName\t\tWin Rate\tBan Rate")
+		place, name, win_rate, ban_rate = get_tier_list("SUPPORT")
+
+		disp_tier_list(place, name, win_rate, ban_rate, "SUPPORT")
+
+
+except:
+	err()
