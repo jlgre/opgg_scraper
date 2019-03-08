@@ -8,14 +8,12 @@ Currently supports tier list for all lanes
 |Command|Modifiers|Description|
 |-|-|-|
 |-t|-a|Display tier list of all lanes|
-||-t|Diplay top lane tier list|
+||-ad|Display adc tier list|
 ||-j|Display jungle tier list|
 ||-m|Display mid tier list|
-||-ad|Display adc tier list|
 ||-s|Display support tier  list|
-
+||-t|Diplay top lane tier list|
 
 ## Current TODOs:
-* add command line arguments to specify lane (DONE)
 * get data for best builds
 * get data for best runes
