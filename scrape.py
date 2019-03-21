@@ -92,28 +92,28 @@ try:
                 disp_tier_list(place, name, win_rate, ban_rate, "TOP")
 
         elif sys.argv[1] == "-t" and sys.argv[2] == "-j":
-                print("\nTOP TIER LIST\n")
+                print("\nJUNGLE TIER LIST\n")
                 print("Tier\t\tName\t\tWin Rate\tBan Rate")
                 place, name, win_rate, ban_rate = get_tier_list("JUNGLE")
 
                 disp_tier_list(place, name, win_rate, ban_rate, "JUNGLE")
 
         elif sys.argv[1] == "-t" and sys.argv[2] == "-m":
-                print("\nTOP TIER LIST\n")
+                print("\nMID TIER LIST\n")
                 print("Tier\t\tName\t\tWin Rate\tBan Rate")
                 place, name, win_rate, ban_rate = get_tier_list("MID")
 
                 disp_tier_list(place, name, win_rate, ban_rate, "MID")
 
         elif sys.argv[1] == "-t" and sys.argv[2] == "-ad":
-                print("\nTOP TIER LIST\n")
+                print("\nADC TIER LIST\n")
                 print("Tier\t\tName\t\tWin Rate\tBan Rate")
                 place, name, win_rate, ban_rate = get_tier_list("ADC")
 
                 disp_tier_list(place, name, win_rate, ban_rate, "ADC")
 
         elif sys.argv[1] == "-t" and sys.argv[2] == "-s":
-                print("\nTOP TIER LIST\n")
+                print("\nSUPPORT TIER LIST\n")
                 print("Tier\t\tName\t\tWin Rate\tBan Rate")
                 place, name, win_rate, ban_rate = get_tier_list("SUPPORT")
 
