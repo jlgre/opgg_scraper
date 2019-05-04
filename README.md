@@ -2,7 +2,7 @@
 
 This is a simple python scraper to pull down data from [opgg](https://op.gg)
 
-Currently supports tier list for all lanes
+Currently supports tier list for all lanes as well as skill orders for specific champions in specific lanes
 
 ## Usage
 |Command|Modifiers|Description|
