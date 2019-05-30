@@ -2,7 +2,7 @@
 
 This is a simple python scraper to pull down data from [opgg](https://op.gg)
 
-Currently supports tier list for all lanes as well as skill orders for specific champions in specific lanes
+Currently supports tier list for all lanes as well as skill orders for a specified champion in a specified lane
 
 ## Usage
 |Command|Modifiers|Description|
@@ -18,3 +18,7 @@ Currently supports tier list for all lanes as well as skill orders for specific 
 ## Current TODOs:
 * get data for best builds
 * get data for best runes
+
+## Things I have learned
+* Examining HTML structure for relevant data
+* Use Beautiful Soup to make scraping easier
