@@ -13,7 +13,7 @@ Currently supports tier list for all lanes as well as skill orders for a specifi
 ||support|Display mid tier list|
 ||support|Display support tier  list|
 ||top|Diplay top lane tier list|
-|-so|NAME LANE|Display skill orders for a given champion and lane|
+|-so|{name} {lane}|Display skill orders for a given champion and lane|
 
 ## Current TODOs:
 * get data for best builds
