@@ -2,3 +2,4 @@
 *.swp
 test.py
 __pycache__/
+env/

@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-import skill_order
-import tier_list
+import sys
 
 import requests
-import sys
-from bs4 import BeautifulSoup
+
+import skill_order
+import tier_list
 
 
 def help_message():
     """
     Deals with invalid argument input
     """
-    print("USAGE:\n\t\"-t {lane}\" or \"-t all\" to get tier list\n\t\"-so {champion} {lane}\" to get skill order")
+    print(
+        "USAGE:\n\t\"-t {lane}\" or \"-t all\" to get tier list\n\t\"-so {champion} {lane}\" to get skill order")
 
 
 def main():
@@ -33,9 +34,6 @@ def main():
 
     except requests.exceptions.ConnectionError:
         print("\nCONNECTION ERROR - check connection and try again")
-
-    #except:
-    #    help_message()
 
 
 if __name__ == "__main__":

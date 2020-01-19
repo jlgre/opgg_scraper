@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def get(lane):
     """
     gets a tier list from a specified lane
@@ -18,7 +19,7 @@ def get(lane):
     tbodyclass = "tabItem champion-trend-tier-" + lane
     tbody = ranks.find("tbody", {"class": tbodyclass})
 
-    place, name, win_rate, ban_rate = [],[],[],[]
+    place, name, win_rate, ban_rate = [], [], [], []
 
     for tr in tbody.find_all("tr"):
         raw = tr.find_all("td")
@@ -39,7 +40,8 @@ def display_header(lane):
         for i in ["top", "jungle", "mid", "adc", "support"]:
             display_header(i)
     else:
-        print("\n"+ lane.upper() + " TIER LIST\n\nTier\t\tName\t\tWin Rate\tBan Rate")
+        print("\n" + lane.upper() +
+              " TIER LIST\n\nTier\t\tName\t\tWin Rate\tBan Rate")
 
 
 def display(place, name, win_rate, ban_rate, lane):
@@ -47,13 +49,10 @@ def display(place, name, win_rate, ban_rate, lane):
     Displays data returned from tier lists
     """
     display_header(lane)
-    for i in range(0,len(place)):
-            if len(name[i]) >= 8:
-                    print(place[i] + "\t\t" +  name[i] + "\t" +  win_rate[i] + "\t\t" + ban_rate[i])
-            else:
-                    print(place[i] + "\t\t" +  name[i] + "\t\t" +  win_rate[i] + "\t\t" + ban_rate[i])
-
-
-
-
-
+    for i in range(0, len(place)):
+        if len(name[i]) >= 8:
+            print(place[i] + "\t\t" + name[i] + "\t" +
+                  win_rate[i] + "\t\t" + ban_rate[i])
+        else:
+            print(place[i] + "\t\t" + name[i] + "\t\t" +
+                  win_rate[i] + "\t\t" + ban_rate[i])
