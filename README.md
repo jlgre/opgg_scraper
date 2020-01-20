@@ -7,6 +7,9 @@ Currently supports tier list for all lanes as well as skill orders for a specifi
 This is also based on very specific formatting of opgg's website, so a redesign by them could break this at any time.
 
 ## Usage
+```
+$ python3 scrape.py <options>
+```
 |Command|Modifiers|Description|
 |-|-|-|
 |-t|all|Display tier list of all lanes|
@@ -19,9 +22,7 @@ This is also based on very specific formatting of opgg's website, so a redesign 
 
 ## Current TODOs:
 * get data for best runes
-
-## Working TODOs:
-* get data for best builds
+* fix tier list bug - currently returns all for any input (-t top acts like -t all)
 
 ## Things I have learned
 * Examining HTML structure for relevant data

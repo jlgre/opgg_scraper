@@ -39,14 +39,10 @@ def get(lane, name):
     return build
 
 
-def pretty_print(data):
+def display(data):
     for i in data:
         build_items = ''
         for j in i[1]:
             build_items += j
             build_items += ', '
         print(i[0], ': ', build_items[:len(build_items) - 2])
-
-
-if __name__ == '__main__':
-    pretty_print(get('mid', 'akali'))
