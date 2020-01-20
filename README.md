@@ -18,7 +18,8 @@ $ python3 scrape.py <options>
 ||support|Display mid tier list|
 ||support|Display support tier  list|
 ||top|Diplay top lane tier list|
-|-so|{name} {lane}|Display skill orders for a given champion and lane|
+|-so|{champion} {lane} |Display skill orders for a given champion and lane|
+|-b| {champion} {lane} | Display optimal builds|
 
 ## Current TODOs:
 * get data for best runes
