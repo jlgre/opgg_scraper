@@ -22,7 +22,7 @@ def main():
     try:
         if sys.argv[1] == "-t" and sys.argv[2] in LANES:
             lane = sys.argv[2]
-            if lane == "all" or "ALL" or "All":
+            if lane == "all" or lane == "ALL":
                 for indv in ["top", "jungle", "mid", "adc", "support"]:
                     place, name, win_rate, ban_rate = tier_list.get(indv)
                     tier_list.display(place, name, win_rate, ban_rate, indv)

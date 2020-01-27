@@ -23,7 +23,6 @@ $ python3 scrape.py <options>
 
 ## Current TODOs:
 * get data for best runes
-* fix tier list bug - currently returns all for any input (-t top acts like -t all)
 
 ## Things I have learned
 * Examining HTML structure for relevant data
