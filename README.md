@@ -6,6 +6,7 @@ Currently supports tier list for all lanes as well as skill orders for a specifi
 
 This is also based on very specific formatting of opgg's website, so a redesign by them could break this at any time.
 
+It is also exposed as an api at [lol.lukegreen.xyz](http://lol.lukegreen.xyz)
 ## Usage
 ```
 $ python3 scrape.py <options>
