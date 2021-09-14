@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>LOL Scraper API</title>
+    <style>
+      :root {
+        background-color: #ccc;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Roboto", sans-serif;
+      }
+      body {
+        font-family: "Roboto:wght@300", sans-serif;
+        background-color: #eee;
+        width: 60%;
+        margin: 2rem auto;
+        color: #333;
+        padding: 2rem;
+        border: solid black 1px;
+        border-radius: 15px;
+        box-shadow: 3px 3px 20px grey;
+      }
+      @media (max-width: 768px) {
+        body {
+          width: 96%;
+        }
+      }
+      code {
+        font-family: "Roboto Mono", monospace;
+        font-size: 16px;
+      }
+      p {
+        font-size: 16px;
+      }
+      pre {
+        font-family: "Roboto Mono", monospace;
+        font-size: 16px;
+        background-color: #fff;
+        color: #555;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid black 1px;
+        box-shadow: 3px 3px 20px grey;
+        overflow: auto;
+      }
+      button {
+        font-family: "Roboto", sans-serif;
+        background-color: #999;
+        padding: 5px 10px;
+        margin-right: 10px;
+        border: 1px black;
+        border-radius: 5px;
+        box-shadow: 3px 3px 10px grey;
+        text-decoration: underline;
+        display: inline;
+      }
+      input {
+        border: solid black 1px;
+        border-radius: 5px;
+        padding: 0 10px;
+        width: 5rem;
+        font-family: "Roboto Mono", monospace;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>League of Legends API</h1>
+    <p>This API exposes a web scraper that scrapes OP.GG for the following:</p>
+    <ul>
+      <li>Build data</li>
+      <li>Tier lists</li>
+      <li>Skill order data</li>
+    </ul>
+    <h2>Usage</h2>
+    <h3>Build Data</h3>
+    <p>
+      URL:
+      <code>
+        https://lol.lukegreen.xyz/build/<input
+          id="buildlane"
+          type="text"
+          value="mid"
+        />/<input id="buildchamp" type="text" value="ahri" />
+      </code>
+    </p>
+    <button onclick="getBuild()">Run Query</button>
+    <button id="buildbutton" onClick="showHide('build')">Show Results</button>
+    <pre id="build" style="display: none;"></pre>
+    <h3>Tier Lists</h3>
+    <p>
+      URL:
+      <code
+        >https://lol.lukegreen.xyz/tierlist/<input
+          id="tierlane"
+          type="text"
+          value="top"
+      /></code>
+    </p>
+    <button onclick="getTierList()">Run Query</button>
+    <button id="tierlistbutton" onClick="showHide('tierlist')">
+      Show Results
+    </button>
+    <pre id="tierlist" style="display: none;"></pre>
+    <h3>Skill Order Data</h3>
+    <p>
+      URL:
+      <code>
+        https://lol.lukegreen.xyz/skillorder/<input
+          id="skilllane"
+          type="text"
+          value="mid"
+        />/<input id="skillchamp" type="text" value="ahri" />
+      </code>
+    </p>
+    <button onclick="getSkillOrder()">Run Query</button>
+    <button id="skillorderbutton" onClick="showHide('skillorder')">
+      Show Results
+    </button>
+    <pre id="skillorder" style="display: none;"></pre>
+    <script>
+      function showHide(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "none") {
+          x.style.display = "block";
+          document.getElementById(id + "button").innerHTML = "Hide Results";
+        } else {
+          x.style.display = "none";
+          document.getElementById(id + "button").innerHTML = "Show Results";
+        }
+      }
+
+      function show(id) {
+        if (document.getElementById(id).style.display === "none") {
+          document.getElementById(id).style.display = "block";
+          document.getElementById(id + "button").innerHTML = "Hide Results";
+        }
+      }
+
+      async function getBuild(shouldShow = true) {
+        const lane = document.getElementById("buildlane").value;
+        const champion = document.getElementById("buildchamp").value;
+
+        const URL = "https://lol.lukegreen.xyz/build/" + lane + "/" + champion;
+
+        let response = await fetch(URL);
+        let json = await response.json();
+
+        let text = "Request:\nGET " + URL + "\n\nResponse:\n";
+
+        document.getElementById("build").innerHTML =
+          text + JSON.stringify(json, null, 2);
+
+        if (shouldShow) {
+          show("build");
+        }
+      }
+
+      async function getTierList(shouldShow = true) {
+        const lane = document.getElementById("tierlane").value;
+
+        const URL = "https://lol.lukegreen.xyz/tierlist/" + lane;
+
+        let response = await fetch(URL);
+        let json = await response.json();
+
+        let text =
+          "Request:\nGET https://lol.lukegreen.xyz/tierlist/" +
+          lane +
+          "\n\nResponse:\n";
+
+        document.getElementById("tierlist").innerHTML =
+          text + JSON.stringify(json, null, 2);
+
+        if (shouldShow) {
+          show("tierlist");
+        }
+      }
+
+      async function getSkillOrder(shouldShow = true) {
+        const lane = document.getElementById("skilllane").value;
+        const champion = document.getElementById("skillchamp").value;
+
+        const URL =
+          "https://lol.lukegreen.xyz/skillorder/" + lane + "/" + champion;
+        let response = await fetch(URL);
+        let json = await response.json();
+
+        let text = "Request:\nGET " + URL + " \n\nResponse:\n";
+
+        document.getElementById("skillorder").innerHTML =
+          text + JSON.stringify(json, null, 2);
+
+        if (shouldShow) {
+          show("skillorder");
+        }
+      }
+
+      getBuild(false);
+      getTierList(false);
+      getSkillOrder(false);
+    </script>
+  </body>
+</html>
