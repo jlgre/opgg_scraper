@@ -1,4 +1,6 @@
 import requests
+from urllib import request, response, error, parse
+from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 
 
@@ -13,8 +15,11 @@ def get(lane):
             "SUPPORT"
     """
     lane = lane.upper()
-    data = requests.get("https://na.op.gg/champion/statistics")
-    soup = BeautifulSoup(data.text, "html.parser")
+    URL = "https://na.op.gg/champion/statistics"
+    hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'}
+    req = Request(URL,headers=hdr)
+    html = request.urlopen(req)
+    soup = BeautifulSoup(html, "html.parser")
     ranks = soup.find("table", {"class": "champion-index-table tabItems"})
     tbodyclass = "tabItem champion-trend-tier-" + lane
     tbody = ranks.find("tbody", {"class": tbodyclass})
