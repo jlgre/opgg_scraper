@@ -3,6 +3,7 @@ from flask import Flask, jsonify, render_template
 import tier_list
 import skill_order
 import build
+import runes
 
 app = Flask(__name__)
 
@@ -41,6 +42,10 @@ def api_build(lane, champ):
 def api_skill_order(lane, champ):
     return jsonify(skill_order.get(lane, champ))
 
+@app.route('/runes/<lane>/<champ>')
+def api_runes(lane, champ):
+    return jsonify(runes.get(lane, champ))
+
 
 if __name__ == '__main__':
-    app.run(port=8888)
+    app.run(host='0.0.0.0')
