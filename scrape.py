@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import sys
-
 import requests
-
 import build
 import skill_order
 import tier_list
+import runes
 
 LANES = ["top", "TOP", "adc", "ADC", "mid", "MID", "jungle", "JUNGLE", "all", "ALL", "support", "SUPPORT"]
 
@@ -14,8 +13,10 @@ def help_message():
     """
     Deals with invalid argument input
     """
-    print(
-        "USAGE:\n\t\"-t {lane}\" or \"-t all\" to get tier list\n\t\"-so {champion} {lane}\" to get skill order\n\t\"-b {champion} {lane}\" to get champion builds")
+    print("USAGE:\n\t\"-t {lane}\" or \"-t all\" to get tier list\
+        \n\t\"-so {champion} {lane}\" to get skill order\
+        \n\t\"-b {champion} {lane}\" to get champion builds\
+        \n\t\"-r {champion} {lane}\" to get champion runes")
 
 
 def main():
@@ -35,6 +36,9 @@ def main():
         elif sys.argv[1] == '-b':
             build_list = build.get(sys.argv[3], sys.argv[2])
             build.display(build_list)
+        elif sys.argv[1] == '-r':
+            rune_guide = runes.get(sys.argv[3], sys.argv[2])
+            runes.display(rune_guide)
         else:
             help_message()
 

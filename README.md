@@ -9,7 +9,7 @@ This is also based on very specific formatting of opgg's website, so a redesign 
 It is also exposed as an api at [lol.lukegreen.xyz](http://lol.lukegreen.xyz)
 ## Usage
 ```
-$ python3 scrape.py <options>
+$ python scrape.py <options>
 ```
 |Command|Modifiers|Description|
 |-|-|-|
@@ -21,9 +21,10 @@ $ python3 scrape.py <options>
 ||top|Diplay top lane tier list|
 |-so|{champion} {lane} |Display skill orders for a given champion and lane|
 |-b| {champion} {lane} | Display optimal builds|
+|-r| {champion} {lane} | Display optimal runes|
 
 ## Current TODOs:
-* get data for best runes
+* ~~get data for best runes~~
 
 ## Things I have learned
 * Examining HTML structure for relevant data
