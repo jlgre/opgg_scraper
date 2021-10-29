@@ -3,7 +3,8 @@
 #
 # This code is given to the public domain
 
-import requests
+from urllib import request, response, error, parse
+from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 
 def get(lane, name):
@@ -11,9 +12,11 @@ def get(lane, name):
     Gets the runes of specific champion and lane
     """
     rune_options = []
-    data = requests.get("https://na.op.gg/champion/" +
-                        name + "/statistics/" + lane)
-    soup = BeautifulSoup(data.text, "html.parser")
+    URL = "https://na.op.gg/champion/" + name + "/statistics/" + lane
+    hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'}
+    req = Request(URL,headers=hdr)
+    html = request.urlopen(req)
+    soup = BeautifulSoup(html, "html.parser")
     paths = soup.find_all('div', class_ = "champion-stats-summary-rune__name")
     rune_paths = ([path.text.split(' + ') for path in paths])
     active_runes = soup.find_all('div', class_ = ["perk-page__item perk-page__item--active",\
