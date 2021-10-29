@@ -86,7 +86,7 @@
     <p>
       URL:
       <code>
-        https://lol.lukegreen.xyz/build/<input
+        http://lol.lukegreen.xyz/build/<input
           id="buildlane"
           type="text"
           value="mid"
@@ -100,7 +100,7 @@
     <p>
       URL:
       <code
-        >https://lol.lukegreen.xyz/tierlist/<input
+        >http://lol.lukegreen.xyz/tierlist/<input
           id="tierlane"
           type="text"
           value="top"
@@ -115,7 +115,7 @@
     <p>
       URL:
       <code>
-        https://lol.lukegreen.xyz/skillorder/<input
+        http://lol.lukegreen.xyz/skillorder/<input
           id="skilllane"
           type="text"
           value="mid"
@@ -127,6 +127,22 @@
       Show Results
     </button>
     <pre id="skillorder" style="display: none;"></pre>
+    <h3>Rune Data</h3>
+    <p>
+      URL:
+      <code>
+        http://lol.lukegreen.xyz/runes/<input
+          id="skilllane"
+          type="text"
+          value="mid"
+        />/<input id="skillchamp" type="text" value="ahri" />
+      </code>
+    </p>
+    <button onclick="getRunes()">Run Query</button>
+    <button id="runesbutton" onClick="showHide('runes')">
+      Show Results
+    </button>
+    <pre id="runes" style="display: none;"></pre>
     <script>
       function showHide(id) {
         var x = document.getElementById(id);
@@ -150,7 +166,7 @@
         const lane = document.getElementById("buildlane").value;
         const champion = document.getElementById("buildchamp").value;
 
-        const URL = "https://lol.lukegreen.xyz/build/" + lane + "/" + champion;
+        const URL = "http://lol.lukegreen.xyz/build/" + lane + "/" + champion;
 
         let response = await fetch(URL);
         let json = await response.json();
@@ -168,13 +184,13 @@
       async function getTierList(shouldShow = true) {
         const lane = document.getElementById("tierlane").value;
 
-        const URL = "https://lol.lukegreen.xyz/tierlist/" + lane;
+        const URL = "http://lol.lukegreen.xyz/tierlist/" + lane;
 
         let response = await fetch(URL);
         let json = await response.json();
 
         let text =
-          "Request:\nGET https://lol.lukegreen.xyz/tierlist/" +
+          "Request:\nGET http://lol.lukegreen.xyz/tierlist/" +
           lane +
           "\n\nResponse:\n";
 
@@ -191,7 +207,7 @@
         const champion = document.getElementById("skillchamp").value;
 
         const URL =
-          "https://lol.lukegreen.xyz/skillorder/" + lane + "/" + champion;
+          "http://lol.lukegreen.xyz/skillorder/" + lane + "/" + champion;
         let response = await fetch(URL);
         let json = await response.json();
 
@@ -205,9 +221,29 @@
         }
       }
 
+      async function getRunes(shouldShow = true) {
+        const lane = document.getElementById("skilllane").value;
+        const champion = document.getElementById("skillchamp").value;
+
+        const URL =
+          "http://lol.lukegreen.xyz/runes/" + lane + "/" + champion;
+        let response = await fetch(URL);
+        let json = await response.json();
+
+        let text = "Request:\nGET " + URL + " \n\nResponse:\n";
+
+        document.getElementById("runes").innerHTML =
+          text + JSON.stringify(json, null, 2);
+
+        if (shouldShow) {
+          show("runes");
+        }
+      }
+
       getBuild(false);
       getTierList(false);
       getSkillOrder(false);
+      getRunes(false)
     </script>
   </body>
 </html>
