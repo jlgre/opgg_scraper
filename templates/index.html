@@ -86,7 +86,7 @@
     <p>
       URL:
       <code>
-        http://lol.lukegreen.xyz/build/<input
+        https://lol.lukegreen.xyz/build/<input
           id="buildlane"
           type="text"
           value="mid"
@@ -100,7 +100,7 @@
     <p>
       URL:
       <code
-        >http://lol.lukegreen.xyz/tierlist/<input
+        >https://lol.lukegreen.xyz/tierlist/<input
           id="tierlane"
           type="text"
           value="top"
@@ -115,7 +115,7 @@
     <p>
       URL:
       <code>
-        http://lol.lukegreen.xyz/skillorder/<input
+        https://lol.lukegreen.xyz/skillorder/<input
           id="skilllane"
           type="text"
           value="mid"
@@ -131,7 +131,7 @@
     <p>
       URL:
       <code>
-        http://lol.lukegreen.xyz/runes/<input
+        https://lol.lukegreen.xyz/runes/<input
           id="skilllane"
           type="text"
           value="mid"
@@ -166,7 +166,7 @@
         const lane = document.getElementById("buildlane").value;
         const champion = document.getElementById("buildchamp").value;
 
-        const URL = "http://lol.lukegreen.xyz/build/" + lane + "/" + champion;
+        const URL = "https://lol.lukegreen.xyz/build/" + lane + "/" + champion;
 
         let response = await fetch(URL);
         let json = await response.json();
@@ -184,13 +184,13 @@
       async function getTierList(shouldShow = true) {
         const lane = document.getElementById("tierlane").value;
 
-        const URL = "http://lol.lukegreen.xyz/tierlist/" + lane;
+        const URL = "https://lol.lukegreen.xyz/tierlist/" + lane;
 
         let response = await fetch(URL);
         let json = await response.json();
 
         let text =
-          "Request:\nGET http://lol.lukegreen.xyz/tierlist/" +
+          "Request:\nGET https://lol.lukegreen.xyz/tierlist/" +
           lane +
           "\n\nResponse:\n";
 
@@ -207,7 +207,7 @@
         const champion = document.getElementById("skillchamp").value;
 
         const URL =
-          "http://lol.lukegreen.xyz/skillorder/" + lane + "/" + champion;
+          "https://lol.lukegreen.xyz/skillorder/" + lane + "/" + champion;
         let response = await fetch(URL);
         let json = await response.json();
 
@@ -226,7 +226,7 @@
         const champion = document.getElementById("skillchamp").value;
 
         const URL =
-          "http://lol.lukegreen.xyz/runes/" + lane + "/" + champion;
+          "https://lol.lukegreen.xyz/runes/" + lane + "/" + champion;
         let response = await fetch(URL);
         let json = await response.json();
 
